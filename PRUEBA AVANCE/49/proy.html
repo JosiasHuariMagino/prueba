@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>proyecto sw 2</title>
+
+	<link rel="stylesheet" href="../hw/normalize.css">
+	<script type="text/javascript" src="../hw/modernizr-custom.js"></script>	
+	<script type="text/javascript" src="../hw/jquery-3.1.1.min.js"></script>
+<!-- estilos css-->
+	<style>
+		
+		.personaje1{
+			height: 100px;
+			width: 100px;
+			background: green;
+		}
+
+		.personaje2{
+			height: 100px;
+			width: 100px;
+			background: red;
+		}
+
+		.personaje3{
+			height: 100px;
+			width: 100px;
+			background: yellow;
+		}
+
+		#caja1{
+			border-radius: 100px;
+		}
+
+	</style>
+<!-- javaScript -->
+	<script>
+		
+		$(document).ready(function() {
+			// body...
+			var num = 1;
+			var cont=1;
+			var estado=true;
+			var personaje ="";
+
+
+				
+				$("#caja1").click(function(){
+					var personaje = $(this).attr("class");
+
+					if(personaje == "personaje1"){
+						console.log("acumula puntos");
+					}
+					if(personaje == "personaje2"){
+						console.log("quita puntos");
+					}
+					if(personaje == "personaje3"){
+						console.log("aumenta tiempo");
+					}
+
+					console.log("nooo" + personaje);
+				});
+
+			var muerte = setInterval(function() {
+				// body...
+
+
+				if(estado){
+					num = getRandomInt(1, 4);
+					personaje = "personaje"+num;				
+					$("#caja1").addClass(personaje);
+
+					$("#caja1").show();
+					estado=false; 
+					
+				}else{
+					
+					$("#caja1").removeClass(personaje);
+
+					$("#caja1").hide();
+					estado=true; 
+				}
+
+				
+
+				//matando el el bucle
+				if(cont >= 20){
+					clearInterval(muerte);
+					alert("murio!!");
+				}
+				console.log(cont);
+				cont++;
+			},700);
+
+	
+			
+
+
+		});		
+
+		//devuelve un número aleatorio en atino entre dos números.
+		function getRandomInt(min, max) {
+			var ran = Math.random();
+		  	return Math.floor( ran * (max - min)) + min;
+		}
+
+		console.log("resultado "+getRandomInt(1,2));
+		console.log("resultado "+getRandomInt(1,2));
+		console.log("resultado "+getRandomInt(1,2));
+
+	</script>
+
+</head>
+<body>
+	
+	<div id="caja1">
+		
+	</div>
+
+</body>
+</html>
